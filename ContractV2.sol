@@ -11,20 +11,20 @@ contract HabitChain{
 
 
 //Create the events that are used to track the progress
-  event econtractCreation(uint deadline, uint valueOfContract, address contracted, address observerOne, address observerTwo, address observerThree);
+  event econtractCreation(uint deadline, uint valueOfContract, address contracted, address observer);
   event econtractedComplete();
   event eobserverOneComp();
   event epayOutComplete();
   event eobserver(bool complete);
-  event etime(uint timeNow, uint deadline, uint diff); // work with this for now until it is determined how to use the clock
+  event eTime(uint timeNow, uint deadline, uint diff); // work with this for now until it is determined how to use the clock
 
-  function HabitChain(uint dl, address obsOne) public{
+  function HabitChain(uint dl, address obs) public payable{
     deadline = dl/1000; //convert the input time to seconds
     valueOfContract = msg.value;
     contracted = msg.sender;
     observer = obs;
     status = 0;
-    econtractCreation(deadline, valueOfContract,contracted,observerOne,observerTwo,observerThree);
+    econtractCreation(deadline, valueOfContract,contracted,observer);
   }
   //modifiers that are required to ensure only those with their credentials can access their keys
   modifier onlyContracted(){
@@ -37,7 +37,7 @@ contract HabitChain{
   }
 
   // now functions that describe what to do if the contract is complete
-  function contractComplete() onlyContracted{
+  function contractComplete() public onlyContracted{
     eTime(now, deadline, now-deadline);
     if(now > deadline){
       throw;
@@ -46,24 +46,24 @@ contract HabitChain{
     econtractedComplete();
   }
   //observer confirms that the
-  function confirm() onlyObs{
+  function confirm() public onlyObs{
     bool isComplete = observer.call('notify', this);
     if(isComplete){
       status = 2; // the contracted earns his share back at status 2
     }
     eobserver(isComplete);
     //time to pay up
-    payOut(isComplete);
+    payout(isComplete);
   }
   function payout(bool complete) internal{
-    if(isComplete){ // if project is completed, do this
-      contracted.transfer(valueOfContract*1.2);
-      observer.transfer(0.1);
+    if(complete){ // if project is completed, do this
+      contracted.transfer(valueOfContract*3);
+      observer.transfer(1);
     }
     else{
-      observer.transfer(0.1 + valueOfContract*0.2);
+      observer.transfer(1);
     }
     epayOutComplete();
   }
 }
-export default HabitChain;
+//export default HabitChain;
