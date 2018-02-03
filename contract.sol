@@ -4,13 +4,11 @@ pragma solidity ^0.4.19;
 // Full contract of a person
 contract HabitChain{
   //the Struct containing the attributes of the person making the contract with themselves
-  struct Date{
-    uint month;
-    uint year;
-    uint day;
+  struct Time{
+    uint time;
   }
-  Date startDate;
-  Date endDate;
+  Date startTime;
+  Date endTime;
   // a person who is creating the contract with
   struct Person{
     uint ethValue;
@@ -19,20 +17,28 @@ contract HabitChain{
     Validator[] validatedKeys; // Array of validators containing their flag
     bool validated;
   }
-  struct Storage{
-    uint stakeHold;
-    address stored;
+  // Stores a storage struct for each possible address
+  mapping(address => Person) private Storage;
+  address[] public StorageAcc;
+
+  function getStorage() view private returns (address[]) {
+    return StorageAcc;
   }
+  function getStorage(address )
+
 // struct describing the validator, someone who can tell the system if a person has completed their contract
   struct Validator{
     bool valid;
     address vAddress;
   }
-  function setDate(Date dt, uint d, uint m, uint y) public{
-    dt.day = d;
-    dt.year = y;
-    dt.month = m;
+  function setTime(Time t, uint d, uint m, uint y) public{
+    t.time = t;
+    t = 0;
   }
+/*
+  function setendTime(Time t, uint d, uint m, uint y) public{
+    t.time = t;
+  }*/
 // Person constructor, initialize variables that we need
   function makePerson(Person p, address add, uint e) public{
     p.ethValue = e;
@@ -51,6 +57,13 @@ contract HabitChain{
     p.ethValue-= stake;
     st.stakeHold = stake;
     return true;
+  }
+
+//Count down time so when t=0, contractEnd is initialized
+  function contractEnd(endTime t, Validator valid, ) {
+    if
+  }
+}
 
 // Need to make:
 // Send money (mapping) from person to temporary Storage
@@ -63,9 +76,8 @@ contract HabitChain{
 // Send mining fee to validators
 // Send staked fee to validators if false
 // end contract?
+//instead of bool validator, assign a hash key,
 
-
-
-
-  }
-}
+//each person will have spefic address, created contract will store stake in tempaddress.
+//miners will verify hashing, trues will all match, falses will all match. Only 2 possible results. (so no incentive to default to false)
+//Set hashing difficulty to easy, so quickly validated.
