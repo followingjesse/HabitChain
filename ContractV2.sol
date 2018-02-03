@@ -1,4 +1,4 @@
-pragma solidity ^0.4.0;
+pragma solidity ^0.4.19;
 //HabitChain, the web app to force you into keeping your New Years Resolutions
 contract HabitChain{
 
