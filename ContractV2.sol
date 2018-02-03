@@ -7,24 +7,25 @@ contract HabitChain{
   uint valueOfContract;
   address contracted;
   address observer;
+  address charity;
   uint status; // status can only take on fixed values, will control which events/functions get triggered
 
 
 //Create the events that are used to track the progress
-  event econtractCreation(uint deadline, uint valueOfContract, address contracted, address observerOne, address observerTwo, address observerThree);
+  event econtractCreation(uint deadline, uint valueOfContract, address contracted, address observer);
   event econtractedComplete();
   event eobserverOneComp();
   event epayOutComplete();
   event eobserver(bool complete);
   event etime(uint timeNow, uint deadline, uint diff); // work with this for now until it is determined how to use the clock
 
-  function HabitChain(uint dl, address obsOne) public{
+  function HabitChain(uint dl, address obs) public{
     deadline = dl/1000; //convert the input time to seconds
     valueOfContract = msg.value;
     contracted = msg.sender;
     observer = obs;
     status = 0;
-    econtractCreation(deadline, valueOfContract,contracted,observerOne,observerTwo,observerThree);
+    econtractCreation(deadline, valueOfContract,contracted,observer);
   }
   // Require valueOfContract <= contracted sender balance, otherwise throw
   function valueCheck(uint value, address ct) public {
@@ -43,31 +44,36 @@ contract HabitChain{
     _;
   }
   // now functions that describe what to do if the contract is complete
-  function contractComplete() onlyContracted{
-    eTime(now, deadline, now-deadline);
+  function contractComplete() public onlyContracted{
+    etime(now, deadline, now-deadline);
     if(now > deadline){
-      payout(false);
+      status = 3;
     }
-    status = 1; // contract has been completed by the contractor
+    else {
+      status = 1; // contract has been completed by the contractor
+    }
     econtractedComplete();
   }
+
+  //
   //observer confirms that the
-  function confirm() onlyObs{
+  function confirm() public onlyObs{
     bool isComplete = observer.call('notify', this);
-    if(isComplete){
+    if(isComplete && status = 1){
       status = 2; // the contracted earns his share back at status 2
     }
     eobserver(isComplete);
     //time to pay up
-    payOut(isComplete);
+    payout(isComplete);
   }
   function payout(bool complete) internal{
-    if(isComplete){ // if project is completed, do this
-      contracted.transfer(valueOfContract*1.2);
-      observer.transfer()
+    if(status == 2) { // if project is completed, do this
+      contracted.transfer(valueOfContract*1.05);
+      observer.transfer(valueOfContract*0.02);
     }
     else{
-      observer.transfer(valueOfContract*.5);
+      observer.transfer(valueOfContract*0.02);
+      charity.transfer(valueOfContract*0.98);
     }
   }
 }
