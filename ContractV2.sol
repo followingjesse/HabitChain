@@ -58,10 +58,12 @@ contract HabitChain{
   function payout(bool complete) internal{
     if(isComplete){ // if project is completed, do this
       contracted.transfer(valueOfContract*1.2);
-      observer.transfer()
+      observer.transfer(0.1);
     }
     else{
-      observer.transfer(valueOfContract*.5);
+      observer.transfer(0.1 + valueOfContract*0.2);
     }
+    epayOutComplete();
   }
 }
+export default HabitChain;
