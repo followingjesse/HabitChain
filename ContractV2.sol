@@ -19,7 +19,7 @@ contract HabitChain{
   event eobserver(bool complete);
   event eTime(uint timeNow, uint deadline, uint diff); // work with this for now until it is determined how to use the clock
 
-  function HabitChain(uint dl, address obs) public payable{
+  function HabitChain(uint dl, address ct, address obs) public payable{
     deadline = dl/1000; //convert the input time to seconds
     valueOfContract = msg.value;
     contracted = msg.sender;
