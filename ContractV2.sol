@@ -29,7 +29,7 @@ contract HabitChain{
   }
   // Require valueOfContract <= contracted sender balance, otherwise throw
   function valueCheck(uint value, address ct) public {
-    if (value > ct){
+    if (value > ct.balance){
       throw;
     }
   }
@@ -59,7 +59,7 @@ contract HabitChain{
   //observer confirms that the
   function confirm() public onlyObs{
     bool isComplete = observer.call('notify', this);
-    if(isComplete && status = 1){
+    if(isComplete && status == 1){
       status = 2; // the contracted earns his share back at status 2
     }
     eobserver(isComplete);
