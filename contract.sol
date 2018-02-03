@@ -4,6 +4,7 @@ pragma solidity ^0.4.19;
 // Full contract of a person
 contract HabitChain{
   //the Struct containing the attributes of the person making the contract with themselves
+  //Time struct to store a time in seconds, do not want to
   struct Time{
     uint time;
   }
@@ -12,7 +13,6 @@ contract HabitChain{
   // a person who is creating the contract with
   struct Person{
     uint ethValue;
-    address pAddress;
     uint numOfValid;
     Validator[] validatedKeys; // Array of validators containing their flag
     bool validated;
@@ -29,11 +29,13 @@ contract HabitChain{
 // struct describing the validator, someone who can tell the system if a person has completed their contract
   struct Validator{
     bool valid;
-    address vAddress;
   }
-  function setTime(Time t, uint d, uint m, uint y) public{
-    t.time = t;
+  // address hash mapping to the validators
+  mapping(address => Validator) public validators; 
+  function setTime(Time tStruct, uint t) public returns Time{
+    tStruct.time = t;
     t = 0;
+    return tStruct;
   }
 /*
   function setendTime(Time t, uint d, uint m, uint y) public{
@@ -58,7 +60,11 @@ contract HabitChain{
     st.stakeHold = stake;
     return true;
   }
-
+  function timeTracker(Time t){
+    while(t.time != 0 ){
+      wait
+    }
+  }
 //Count down time so when t=0, contractEnd is initialized
   function contractEnd(endTime t, Validator valid, ) {
     if
