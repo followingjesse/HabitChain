@@ -26,6 +26,13 @@ contract HabitChain{
     status = 0;
     econtractCreation(deadline, valueOfContract,contracted,observerOne,observerTwo,observerThree);
   }
+  // Require valueOfContract <= contracted sender balance, otherwise throw
+  function valueCheck(uint value, address ct) public {
+    if (value > ct){
+      throw;
+    }
+  }
+
   //modifiers that are required to ensure only those with their credentials can access their keys
   modifier onlyContracted(){
     require(msg.sender == contracted);
@@ -35,14 +42,13 @@ contract HabitChain{
     require(msg.sender == observer);
     _;
   }
-
   // now functions that describe what to do if the contract is complete
   function contractComplete() onlyContracted{
     eTime(now, deadline, now-deadline);
     if(now > deadline){
-      throw;
+      payout(false);
     }
-    status = 1; // contract has been completed by the
+    status = 1; // contract has been completed by the contractor
     econtractedComplete();
   }
   //observer confirms that the
