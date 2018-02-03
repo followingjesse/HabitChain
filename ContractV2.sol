@@ -28,9 +28,9 @@ contract HabitChain{
     econtractCreation(deadline, valueOfContract,contracted,observer);
   }
   // Require valueOfContract <= contracted sender balance, otherwise throw
-  function valueCheck(uint value, address ct) public {
+  function valueCheck(uint value, address ct) view public {
     if (value > ct.balance){
-      throw;
+      revert();
     }
   }
 
@@ -64,9 +64,9 @@ contract HabitChain{
     }
     eobserver(isComplete);
     //time to pay up
-    payout(isComplete);
+    payout();
   }
-  function payout(bool complete) internal{
+  function payout() internal{
     if(status == 2) { // if project is completed, do this
       contracted.transfer(valueOfContract*102/100);
       observer.transfer(valueOfContract*2/100);
