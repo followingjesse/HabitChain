@@ -68,12 +68,12 @@ contract HabitChain{
   }
   function payout(bool complete) internal{
     if(status == 2) { // if project is completed, do this
-      contracted.transfer(valueOfContract*1.05);
-      observer.transfer(valueOfContract*0.02);
+      contracted.transfer(valueOfContract*102/100);
+      observer.transfer(valueOfContract*2/100);
     }
     else{
-      observer.transfer(valueOfContract*0.02);
-      charity.transfer(valueOfContract*0.98);
+      observer.transfer(valueOfContract*2/100);
+      charity.transfer(valueOfContract*98/100);
     }
     epayOutComplete();
   }
