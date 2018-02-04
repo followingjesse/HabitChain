@@ -1,0 +1,261 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+  <meta name="description" content="">
+  <meta name="author" content="">
+  <title>SB Admin - Start Bootstrap Template</title>
+  <!-- Bootstrap core CSS-->
+  <link href="vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
+  <!-- Custom fonts for this template-->
+  <link href="vendor/font-awesome/css/font-awesome.min.css" rel="stylesheet" type="text/css">
+  <!-- Page level plugin CSS-->
+  <link href="vendor/datatables/dataTables.bootstrap4.css" rel="stylesheet">
+  <!-- Custom styles for this template-->
+  <link href="css/sb-admin.css" rel="stylesheet">
+
+</head>
+
+<body class="fixed-nav sticky-footer" id="page-top">
+  <!-- Navigation-->
+  <nav class="navbar navbar-expand-lg navbar-green navbar-dark fixed-top" id="mainNav">
+
+      <img class="logo navbar-brand" src="images\smlogo.png" href="home.html"/>
+    <button class="navbar-toggler navbar-toggler-right" type="button" data-toggle="collapse" data-target="#navbarResponsive" aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+    <div class="collapse navbar-collapse" id="navbarResponsive">
+      <ul class="navbar-nav navbar-sidenav" id="exampleAccordion">
+        <li class="nav-item profile">
+          <div class="row">
+            <img class="profilepic" src="images\person.jpg"/>
+          </div>
+          <div class="row">
+            <p class="name">Jane Doe</p>
+          </div>
+        <li class="nav-item" data-toggle="tooltip" data-placement="right" title="Dashboard">
+          <a class="nav-link" href="home.html">
+            <i class="fa fa-fw fa-dashboard"></i>
+            <span class="nav-link-text">Dashboard</span>
+          </a>
+        </li>
+        <li class="nav-item" data-toggle="tooltip" data-placement="right" title="Create">
+          <a class="nav-link" href="newhabit.html">
+            <i class="fa fa-fw fa-plus-circle"></i>
+            <span class="nav-link-text">Create a new habit</span>
+          </a>
+        </li>
+        <li class="nav-item" data-toggle="tooltip" data-placement="right" title="Habits">
+          <a class="nav-link" href="home.html">
+            <i class="fa fa-fw fa-heart"></i>
+            <span class="nav-link-text">My habits</span>
+          </a>
+        </li>
+        <li class="nav-item" data-toggle="tooltip" data-placement="right" title="Transactions">
+          <a class="nav-link nav-link-collapse collapsed" data-toggle="collapse" href="#collapseComponents" data-parent="#exampleAccordion">
+            <i class="fa fa-fw fa-dollar"></i>
+            <span class="nav-link-text">Transactions</span>
+          </a>
+        </li>
+      </ul>
+      <ul class="navbar-nav sidenav-toggler">
+        <li style="background-color: #1B9B7D;" class="nav-item">
+          <a class="nav-link text-center" id="sidenavToggler">
+            <i class="fa fa-fw fa-angle-left"></i>
+          </a>
+        </li>
+      </ul>
+      <ul class="navbar-nav ml-auto">
+        <li class="nav-item dropdown">
+          <a class="nav-link dropdown-toggle mr-lg-2" id="messagesDropdown" href="#" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+            <i class="fa fa-fw fa-envelope"></i>
+            <span class="d-lg-none">Messages
+              <span class="badge badge-pill badge-primary">12 New</span>
+            </span>
+            <span class="indicator text-primary d-none d-lg-block">
+              <i class="fa fa-fw fa-circle"></i>
+            </span>
+          </a>
+
+        <li class="nav-item dropdown">
+          <a class="nav-link dropdown-toggle mr-lg-2" id="alertsDropdown" href="#" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+            <i class="fa fa-fw fa-bell"></i>
+            <span class="d-lg-none">Alerts
+              <span class="badge badge-pill badge-warning">6 New</span>
+            </span>
+            <span class="indicator text-warning d-none d-lg-block">
+              <i class="fa fa-fw fa-circle"></i>
+            </span>
+          </a>
+          <div class="dropdown-menu" aria-labelledby="alertsDropdown">
+          </div>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" data-toggle="modal" data-target="#exampleModal">
+            <i class="fa fa-fw fa-sign-out"></i>Logout</a>
+        </li>
+      </ul>
+    </div>
+  </nav>
+
+  <div class="content-wrapper">
+    <div class="container-fluid">
+      <!-- Breadcrumbs-->
+      <ol class="breadcrumb">
+        <li class="breadcrumb-item">
+          <a href="#">Dashboard</a>
+        </li>
+        <li class="breadcrumb-item active">New Habit</li>
+      </ol>
+
+<div class="row">
+
+<div class="col-8">
+  <div class="card">
+    <div class="card-header">
+      Create a new habit
+    </div>
+
+    <div class="card-body offset-sm-1">
+      <div class="form-group row">
+        <label for="example-text-input" class="col-3 col-form-label">Habit/goal:</label>
+        <div class="col-8">
+          <input class="form-control" type="text" value="Get an A on comp sci exam" id="example-text-input">
+        </div>
+      </div>
+      <div class="form-group row">
+        <label for="example-email-input" class="col-3 col-form-label">Wager</label>
+        <div class="col-3">
+          <input class="form-control" type="text" value="$20" id="example-number-input">
+        </div>
+      </div>
+
+      <div class="form-group row">
+        <label for="example-datetime-local-input" class="col-3 col-form-label">Start Date</label>
+        <div class="col-5">
+          <input class="form-control" type="date" value="2018-02-15" id="example-datetime-local-input">
+        </div>
+      </div>
+      <div class="form-group row">
+        <label for="example-datetime-local-input" class="col-3 col-form-label">End Date</label>
+        <div class="col-5">
+          <input class="form-control" type="date" value="2018-02-22" id="example-datetime-local-input">
+        </div>
+      </div>
+      <div class="form-group row">
+        <label for="description" class="col-3 col-form-label">Description of Habit/goal:</label>
+        <div class="col-8">
+          <textarea class="form-control" rows="5"></textarea>
+        </div>
+      </div>
+
+      <div class="row">
+        <div class="col-lg-11">
+        <a href="home2.html" style="float: right;" class=" col-sm-3 btn btn-primary btn-sm active" role="button" aria-pressed="true">Submit</a>
+        </div>
+      </div>
+
+    </div>
+
+    <div class="card-footer small text-muted"></div>
+
+  </div>
+
+</div>
+
+    <div class="col-4">
+      <div class="card">
+        <div class="card-header">
+          <a href="#" style="float: right;">Add</a>
+          Friends List
+        </div>
+        <div class="card-body" style="margin-bottom: 2em;">
+          <div class="row friendlist">
+            <div class="col-4">
+            <img class="friend" src="images\person.jpg"/>
+            </div>
+            <div class="col-5">
+              <p class="friendname">Friend 1</p>
+            </div>
+          </div>
+          <div class="row friendlist">
+            <div class="col-4">
+            <img class="friend" src="images\person.jpg"/>
+            </div>
+            <div class="col-5">
+              <p class="friendname">Friend 2</p>
+            </div>
+          </div>
+          <div class="row friendlist">
+            <div class="col-4">
+            <img class="friend" src="images\person.jpg"/>
+            </div>
+            <div class="col-5">
+              <p class="friendname">Friend 3</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+</div>
+
+
+
+<div>&nbsp</div>
+
+
+
+    <!-- /.container-fluid-->
+    <!-- /.content-wrapper-->
+    <footer class="sticky-footer">
+      <div class="container">
+        <div class="text-center">
+          <small>Copyright © HabitChain</small>
+        </div>
+      </div>
+    </footer>
+    <!-- Scroll to Top Button-->
+    <a class="scroll-to-top rounded" href="#page-top">
+      <i class="fa fa-angle-up"></i>
+    </a>
+    <!-- Logout Modal-->
+    <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+      <div class="modal-dialog" role="document">
+        <div class="modal-content">
+          <div class="modal-header">
+            <h5 class="modal-title" id="exampleModalLabel">Ready to Leave?</h5>
+            <button class="close" type="button" data-dismiss="modal" aria-label="Close">
+              <span aria-hidden="true">×</span>
+            </button>
+          </div>
+          <div class="modal-body">Select "Logout" below if you are ready to end your current session.</div>
+          <div class="modal-footer">
+            <button class="btn btn-secondary" type="button" data-dismiss="modal">Cancel</button>
+            <a class="btn btn-primary" href="login.html">Logout</a>
+          </div>
+        </div>
+      </div>
+    </div>
+    <!-- Bootstrap core JavaScript-->
+      <script src="vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
+
+    <script src="vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
+    <!-- Core plugin JavaScript-->
+    <script src="vendor/jquery-easing/jquery.easing.min.js"></script>
+    <!-- Page level plugin JavaScript-->
+    <script src="vendor/chart.js/Chart.min.js"></script>
+    <script src="vendor/datatables/jquery.dataTables.js"></script>
+    <script src="vendor/datatables/dataTables.bootstrap4.js"></script>
+    <!-- Custom scripts for all pages-->
+    <script src="js/sb-admin.min.js"></script>
+    <!-- Custom scripts for this page-->
+    <script src="js/sb-admin-datatables.min.js"></script>
+    <script src="js/sb-admin-charts.min.js"></script>
+  </div>
+</body>
+
+</html>
