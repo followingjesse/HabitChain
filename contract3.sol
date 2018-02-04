@@ -60,7 +60,7 @@ contract HabitChain{
   /* problem with this section is that it doesn't work if you add in a case to check what time it is relative to the deadline SOS JESSE*/
   function payout() internal{
     if(status == 2) { // if project is completed, do this
-      contracted.transfer(valueOfContract*20/100);
+      contracted.transfer(valueOfContract +valueOfContract*20/100);
       observer.transfer(valueOfContract*20/100);
     }
     else{
