@@ -19,7 +19,7 @@ contract HabitChain{
   event eobserver(bool complete);
   event eTime(uint timeNow, uint deadline, uint diff); // work with this for now until it is determined how to use the clock
 
-  function HabitChain(uint dl, address ct, address obs) public payable{
+  function HabitChain(uint dl, address obs) public payable{
     deadline = dl/1000; //convert the input time to seconds
     valueOfContract = msg.value;
     contracted = msg.sender;
@@ -44,7 +44,7 @@ contract HabitChain{
     _;
   }
   // now functions that describe what to do if the contract is complete
-  function contractComplete() public onlyContracted{
+  function contractComplete() public payable onlyContracted{
     eTime(now, deadline, now-deadline);
     if(now > deadline){
       status = 3;
@@ -57,7 +57,7 @@ contract HabitChain{
 
   //
   //observer confirms that the
-  function confirm() public onlyObs{
+  function confirm() public payable onlyObs{
     bool isComplete = observer.call('notify', this);
     if(isComplete && status == 1){
       status = 2; // the contracted earns his share back at status 2
@@ -68,12 +68,12 @@ contract HabitChain{
   }
   function payout() internal{
     if(status == 2) { // if project is completed, do this
-      contracted.transfer(valueOfContract*102/100);
-      observer.transfer(valueOfContract*2/100);
+      contracted.transfer(valueOfContract);
+      observer.transfer(valueOfContract);
     }
     else{
-      observer.transfer(valueOfContract*2/100);
-      charity.transfer(valueOfContract*98/100);
+      observer.transfer(valueOfContract);
+      charity.transfer(valueOfContract);
     }
     epayOutComplete();
   }
